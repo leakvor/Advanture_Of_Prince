@@ -275,7 +275,6 @@ def level03(event):
 # =========================== PLAYER IMAGE =========================
     canvas.create_rectangle(0,730,SCREEN_WIDTH,SCREEN_HEIGHT,fill="black",tags="PLATFORM")
     player_id=canvas.create_image(70,50, image = hero, anchor=NW)
-    gravity()
 
 # ---------------------------------------------------------------------------
 
