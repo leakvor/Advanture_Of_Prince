@@ -70,6 +70,7 @@ coin=tk.PhotoImage(file='image/coin.png')
 water=tk.PhotoImage(file='image/water.png')
 boom=tk.PhotoImage(file='image/boom.png')
 door=tk.PhotoImage(file='image/door.png')
+door2=tk.PhotoImage(file='image/door2.png')
 long_wall=tk.PhotoImage(file='image/long-wall.png')
 monster=tk.PhotoImage(file='image/monster.png')
 fire=tk.PhotoImage(file='image/fire.png')
@@ -175,7 +176,7 @@ def level02(event):
     canvas.create_image(950, 600, image=long_wall, tags='PLATFORM', anchor=NW)    
 
     # =============== DOOR ====================
-    canvas.create_image(1335,330, image=door , tags="DOOR", anchor=NW)
+    canvas.create_image(1335,330, image=door2 , tags="DOOR2", anchor=NW)
 
     # =============== WATER ===================
     canvas.create_image(1150, 380, image= water, tags='WATER', anchor=NW)
@@ -376,9 +377,17 @@ def check_movement_monster():
             return mon
     return 0
 # ==============> WHEN GET DOOR <==================
-def check_movement_door():
+def check_movement_door1():
     coord = canvas.coords(player_id)
     door = canvas.find_withtag("DOOR")
+    overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + hero.width(),coord[1] + hero.height())
+    for do in door:
+        if do in overlap:
+            return do
+    return 0
+def check_movement_door2():
+    coord = canvas.coords(player_id)
+    door = canvas.find_withtag("DOOR2")
     overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + hero.width(),coord[1] + hero.height())
     for do in door:
         if do in overlap:
@@ -423,7 +432,8 @@ def move():
         get_fire = check_movement_fire()
         get_boom = check_movement_boom()
         get_monster = check_movement_monster()
-        get_door = check_movement_door()
+        get_door1 = check_movement_door1()
+        get_door2 = check_movement_door2()
         get_queen = check_movement_queen()
         if get_water > 0:
             coord = canvas.coords(get_water)
@@ -465,10 +475,16 @@ def move():
             canvas.delete(get_monster)
             gameWin()
         
-        if get_door> 0:
-            coord = canvas.coords(get_door)
-            # door_sound()
-            canvas.delete(get_door)
+        if get_door1> 0:
+            coord = canvas.coords(get_door1)
+            door_sound()
+            canvas.delete(get_door1)
+            # canvas.create_image(coord[0], coord[1], image=skin)
+            level02()
+        if get_door2> 0:
+            coord = canvas.coords(get_door2)
+            door_sound()
+            canvas.delete(get_door2)
             # canvas.create_image(coord[0], coord[1], image=skin)
             level02()
 # ==============>GRAVITY <==================        
