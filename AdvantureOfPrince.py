@@ -314,7 +314,7 @@ def showSlid3():
     canvas.create_image(1,0,image=slide3, anchor='nw')
     canvas.create_text(700,420,text="Loading...",font=('sansarif',28,'bold'),fill='white')
     canvas.after(2000,alllevels)
-
+# ___________________Check_move(player)___________________________________
 def check_movement(dx=0, dy=0, checkGround=False):
     coord = canvas.coords(player_id)
     platforms = canvas.find_withtag("PLATFORM")
@@ -328,6 +328,69 @@ def check_movement(dx=0, dy=0, checkGround=False):
         if platform in overlap:
             return False
     return True
+# ==============> WHEN GET COIN <==================
+def check_movement_coin():
+    coord = canvas.coords(player_id)
+    coin = canvas.find_withtag("COIN")
+    overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + hero.width(),coord[1] + hero.height())
+    for co in coin:
+        if co in overlap:
+            return co
+    return 0
+# ==============> WHEN GET WATER <==================
+def check_movement_water():
+    coord = canvas.coords(player_id)
+    water = canvas.find_withtag("WATER")
+    overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + hero.width(),coord[1] + hero.height())
+    for wat in water:
+        if wat in overlap:
+            return wat
+    return 0
+# ==============> WHEN GET FIRE <==================
+def check_movement_fire():
+    coord = canvas.coords(player_id)
+    fire = canvas.find_withtag("FIRE")
+    overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + hero.width(),coord[1] + hero.height())
+    for fi in fire:
+        if fi in overlap:
+            return fi
+    return 0
+# ==============> WHEN GET BOOM <==================
+def check_movement_boom():
+    coord = canvas.coords(player_id)
+    boom = canvas.find_withtag("BOOM")
+    overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + hero.width(),coord[1] + hero.height())
+    for bo in boom:
+        if bo in overlap:
+            return bo
+    return 0
+# ==============> WHEN GET BOOM <==================
+def check_movement_monster():
+    coord = canvas.coords(player_id)
+    monster = canvas.find_withtag("MONSTER")
+    overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + hero.width(),coord[1] + hero.height())
+    for mon in monster:
+        if mon in overlap:
+            return mon
+    return 0
+# ==============> WHEN GET DOOR <==================
+def check_movement_door():
+    coord = canvas.coords(player_id)
+    door = canvas.find_withtag("DOOR")
+    overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + hero.width(),coord[1] + hero.height())
+    for do in door:
+        if do in overlap:
+            return do
+    return 0
+# ==============> WHEN MEET QUEEN <==================
+def check_movement_queen():
+    coord = canvas.coords(player_id)
+    queen = canvas.find_withtag("QUEEN")
+    overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + hero.width(),coord[1] + hero.height())
+    for qe in queen:
+        if qe in overlap:
+            return qe
+    return 0
 # ==============> WHEN JUMP <==================
 
 def jump(force):
@@ -353,6 +416,60 @@ def move():
         if check_movement(x):
             canvas.move(player_id, x, 0)
         root.after(TIMED_LOOP, move)
+        get_coin = check_movement_coin()
+        get_water = check_movement_water()
+        get_fire = check_movement_fire()
+        get_boom = check_movement_boom()
+        get_monster = check_movement_monster()
+        get_door = check_movement_door()
+        get_queen = check_movement_queen()
+        if get_water > 0:
+            coord = canvas.coords(get_water)
+            
+            canvas.delete(get_water)
+            # canvas.create_image(coord[0], coord[1], image=skin)
+            score += coin_score
+            
+            
+        if get_coin > 0:
+            coord = canvas.coords(get_coin)
+            # Coin_Sound()
+            canvas.delete(get_coin)
+            # canvas.create_image(coord[0], coord[1], image=skin)
+            score += water_score
+            
+
+        if get_fire > 0:
+            coord = canvas.coords(get_fire)
+            canvas.delete(get_fire)
+            # canvas.create_image(coord[0], coord[1], image=skin)
+            score -= fire_score
+                
+            
+        if get_boom > 0:
+            coord = canvas.coords(get_boom)
+            
+            canvas.delete(get_boom)
+            # canvas.create_image(coord[0], coord[1], image=skin)
+    
+        if get_monster > 0:
+            coord = canvas.coords(get_monster)
+            
+            canvas.delete(get_monster)
+            # canvas.create_image(coord[0], coord[1], image=skin)
+    
+        if get_queen > 0:
+            coord = canvas.coords(get_queen)
+            
+            canvas.delete(get_monster)
+            # canvas.create_image(coord[0], coord[1], image=skin)
+        
+        if get_door> 0:
+            coord = canvas.coords(get_door)
+            # door_sound()
+            canvas.delete(get_door)
+            # canvas.create_image(coord[0], coord[1], image=skin)
+            level02()
 # ==============>GRAVITY <==================        
 def gravity():
     if check_movement(0, GRAVITY_FORCE, True):
@@ -365,9 +482,6 @@ def stop_move(event):
 
 #=> ALLOW WINDOWS KEYS AND TAGES BIND
 # ---------------------------------------------------------------------------
-# root.bind("<w>", movePlayerUp)
-# root.bind("<s>", movePlayerDown)
-# root.bind("<Button-3>", createBullet)
 canvas.tag_bind("help","<Button-1>",introdution )
 canvas.tag_bind("story","<Button-1>", level01)
 canvas.tag_bind("backhome","<Button-1>", back)
