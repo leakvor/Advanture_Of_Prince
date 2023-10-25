@@ -13,7 +13,7 @@ import random
 SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 740
 GRAVITY_FORCE = 9
-JUMP_FORCE = 22
+JUMP_FORCE = 30
 SPEED = 5
 TIMED_LOOP = 10
 
@@ -142,6 +142,7 @@ def level01(event):
     canvas.create_image(570,180, image=flower)
     canvas.create_image(1373,70, image=flower)
     canvas.create_image(1110,360, image=flower)
+    canvas.create_rectangle(0,730,SCREEN_WIDTH,SCREEN_HEIGHT,fill="black",tags="PLATFORM")
     gravity()
 
 # =======================> LEVEL_2 <==========================
@@ -154,7 +155,7 @@ def level02(event):
 
     # ============= long_wall =================
 
-    canvas.create_image(0,650, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(20,650, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(150,250, image = long_wall , tags="PLATFORM", anchor=NW)
     canvas.create_image(200, 450, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(420, 550, image=long_wall, tags='PLATFORM', anchor=NW)
@@ -193,8 +194,6 @@ def level02(event):
     canvas.create_image(950, 260, image=monster, tags='MONSTER', anchor=NW)
     canvas.create_image(200, 360, image=monster, tags='MONSTER', anchor=NW)
 
-    # =============== RANGER ===================
-    canvas.create_image(150, 600, image=hero, anchor=NW)
 
     # =============== COIN ===================
     
@@ -545,5 +544,4 @@ root.bind("<KeyRelease>", stop_move)
 canvas.pack(expand=True, fill='both')
 home()
 root.mainloop()
-canvas.pack(expand=True, fill='both')
-root.mainloop()
+
