@@ -99,7 +99,7 @@ def level01(event):
     canvas.delete("all")
     global player_id, score_id
     canvas.create_image(0,0,image=level1_bg, anchor='nw')
-
+    canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 # ==================  DOOR  ===============
     canvas.create_image(1290,30, image=door , tags="DOOR", anchor=NW)
 # ==================  LONG STONE IMAGE ===============
@@ -329,6 +329,7 @@ canvas.tag_bind("button_level","<Button-1>", alllevels)
 canvas.tag_bind("startgame","<Button-1>", startGame )
 canvas.tag_bind("level1-","<Button-1>", level01 )
 canvas.tag_bind("level2-","<Button-1>", level02 )
+canvas.tag_bind("level3-","<Button-1>", level03 )
 
 #=> MAIN ROOT
 # ---------------------------------------------------------------------------
