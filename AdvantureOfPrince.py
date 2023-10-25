@@ -158,7 +158,7 @@ def level02(event):
 
     # ============= long_wall =================
 
-    canvas.create_image(20,650, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(50,650, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(150,250, image = long_wall , tags="PLATFORM", anchor=NW)
     canvas.create_image(200, 450, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(420, 550, image=long_wall, tags='PLATFORM', anchor=NW)
@@ -222,7 +222,7 @@ def level03(event):
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 # ========================== WHITE STONE IMAGE ================
 
-    canvas.create_image(0, 650, image = long_wall, tags = "PLATFORM", anchor=NW)
+    canvas.create_image(40, 650, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(600, 330, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(400, 430, image = long_wall,  tags = "PLATFORM", anchor=NW)
     canvas.create_image(200, 530, image = long_wall, tags = "PLATFORM", anchor=NW)
