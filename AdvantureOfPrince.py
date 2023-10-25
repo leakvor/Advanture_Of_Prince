@@ -81,6 +81,8 @@ play_again=tk.PhotoImage(file='image/playAgain.png')
 retry=tk.PhotoImage(file='image/Retry.png')
 back_to_game=tk.PhotoImage(file='image/back.png')
 
+ # ==================  PLAYER ===============
+player_id=canvas.create_image(20,50, image = hero)
 
 #=========================== ALL LEVELS =======================
 def alllevels():
@@ -104,7 +106,7 @@ def level01(event):
     canvas.create_image(1290,30, image=door , tags="DOOR", anchor=NW)
 # ==================  LONG STONE IMAGE ===============
     canvas.create_image(500,500, image = long_wall , tags="PLATFORM", anchor=NW)
-    canvas.create_image(50,530, image = long_wall , tags="PLATFORM", anchor=NW)
+    canvas.create_image(10,530, image = long_wall , tags="PLATFORM", anchor=NW)
     canvas.create_image(750,600, image = long_wall , tags="PLATFORM", anchor=NW)
     canvas.create_image(250,400, image = long_wall ,tags="PLATFORM", anchor=NW)
     canvas.create_image(380,230, image = long_wall ,tags="PLATFORM", anchor=NW)
@@ -140,6 +142,7 @@ def level01(event):
     canvas.create_image(660,160, image=flower)
     canvas.create_image(1373,70, image=flower)
     canvas.create_image(1110,360, image=flower)
+    gravity()
 
 # =======================> LEVEL_2 <==========================
 
@@ -153,13 +156,11 @@ def level02(event):
 
     canvas.create_image(0,650, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(150,250, image = long_wall , tags="PLATFORM", anchor=NW)
-    # canvas.create_image(150, 550, image=  long_wall, tags='PLATFORM', anchor=NW)
-    # canvas.create_image(350, 250, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(200, 450, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(420, 550, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(400, 150, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(420, 350, image=long_wall, tags='PLATFORM', anchor=NW)
-    # canvas.create_image(500, 650, image= long_wall, tags='PLATFORM', anchor=NW)
+
     canvas.create_image(650,450, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(650, 250, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(650, 650,image=long_wall, tags='PLATFORM', anchor=NW)
@@ -208,7 +209,7 @@ def level02(event):
     canvas.create_rectangle(0,730,SCREEN_WIDTH,SCREEN_HEIGHT,fill="black",tags="PLATFORM")
     #   =============== PLAYER ===================
     score_id = canvas.create_text(1300, 15, text="Score:", font=("bold", 15), fill='white')
-    # gravity()
+    gravity()
 
     #=========================== LEVEL3 =======================
 
@@ -238,10 +239,6 @@ def level03(event):
     canvas.create_image(950, 650, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(1250, 230, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(120, 130, image = long_wall, tags = "PLATFORM", anchor=NW)
-    # canvas.create_image(1150, 220, image =long_wall,  tags = "PLATFORM", anchor=NW)
-    # canvas.create_image(800, 120, image = long_wall, tags = "PLATFORM", anchor=NW)
-    # canvas.create_image(450, 580, image = long_wall, tags = "PLATFORM", anchor=NW)
-    # canvas.create_image(1150, 580, image =long_wall,  tags = "PLATFORM", anchor=NW)
 # =========================== PLAYER =============================
     # canvas.create_image(100,550, image = hero, anchor=NW)
 # =========================== PRINCESS ===========================
@@ -274,8 +271,9 @@ def level03(event):
     canvas.create_image(1350,200, image = boom, tags = "BOOM", anchor=NW)
 # =========================== PLAYER IMAGE =========================
     canvas.create_rectangle(0,730,SCREEN_WIDTH,SCREEN_HEIGHT,fill="black",tags="PLATFORM")
-    player_id=canvas.create_image(70,50, image = hero, anchor=NW)
-
+    player_id=canvas.create_image(100,200, image = hero, anchor=NW)
+    score_id = canvas.create_text(1300, 15, text="Score:", font=("bold", 15), fill='white')
+    gravity()
 # ---------------------------------------------------------------------------
 
 # ==============> Indroduction <==================
@@ -317,13 +315,57 @@ def showSlid3():
     canvas.create_text(700,420,text="Loading...",font=('sansarif',28,'bold'),fill='white')
     canvas.after(2000,alllevels)
 
+def check_movement(dx=0, dy=0, checkGround=False):
+    coord = canvas.coords(player_id)
+    platforms = canvas.find_withtag("PLATFORM")
+    if coord[0] + dx < 0 or coord[0]+hero.width() + dx > SCREEN_WIDTH:
+        return False
+    if checkGround:
+        overlap = canvas.find_overlapping(coord[0]+hero.width(), coord[1], coord[0]+ hero.width() , coord[1]+hero.height() + dy)
+    else:
+        overlap = canvas.find_overlapping(coord[0]+dx, coord[1]+dy, coord[0]+dx, coord[1]+ hero.width())
+    for platform in platforms:
+        if platform in overlap:
+            return False
+    return True
+# ==============> WHEN JUMP <==================
+
+def jump(force):
+    if force > 0:
+        if check_movement(0, -force):
+            canvas.move(player_id, 0, -force)
+            root.after(TIMED_LOOP, jump, force-1)
+def start_move(event):
+    if event.keysym not in keyPressed:
+        keyPressed.append(event.keysym)
+        if len(keyPressed) == 1:
+            move()
+def move():
+    global score
+    if not keyPressed == []:
+        x = 0
+        if "Left" in keyPressed:
+            x -= SPEED
+        if "Right" in keyPressed:
+            x += SPEED
+        if "space" in keyPressed and not check_movement(0, GRAVITY_FORCE, True):
+            jump(JUMP_FORCE)
+        if check_movement(x):
+            canvas.move(player_id, x, 0)
+        root.after(TIMED_LOOP, move)
+# ==============>GRAVITY <==================        
+def gravity():
+    if check_movement(0, GRAVITY_FORCE, True):
+        canvas.move(player_id, 0, GRAVITY_FORCE)
+    root.after(TIMED_LOOP, gravity)
+
 #=> ALLOW WINDOWS KEYS AND TAGES BIND
 # ---------------------------------------------------------------------------
 # root.bind("<w>", movePlayerUp)
 # root.bind("<s>", movePlayerDown)
 # root.bind("<Button-3>", createBullet)
 canvas.tag_bind("help","<Button-1>",introdution )
-canvas.tag_bind("story","<Button-1>", story)
+canvas.tag_bind("story","<Button-1>", level01)
 canvas.tag_bind("backhome","<Button-1>", back)
 canvas.tag_bind("button_level","<Button-1>", alllevels)
 canvas.tag_bind("startgame","<Button-1>", startGame )
