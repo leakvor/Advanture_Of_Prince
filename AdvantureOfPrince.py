@@ -436,7 +436,6 @@ def move():
             
         if get_coin > 0:
             coord = canvas.coords(get_coin)
-            Coin_Sound()
             canvas.delete(get_coin)
             score += coin_score
             update_score()
