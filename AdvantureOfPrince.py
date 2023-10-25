@@ -358,6 +358,10 @@ def gravity():
     if check_movement(0, GRAVITY_FORCE, True):
         canvas.move(player_id, 0, GRAVITY_FORCE)
     root.after(TIMED_LOOP, gravity)
+def stop_move(event):
+    global keyPressed
+    if event.keysym in keyPressed:
+        keyPressed.remove(event.keysym)
 
 #=> ALLOW WINDOWS KEYS AND TAGES BIND
 # ---------------------------------------------------------------------------
@@ -372,6 +376,8 @@ canvas.tag_bind("startgame","<Button-1>", startGame )
 canvas.tag_bind("level1-","<Button-1>", level01 )
 canvas.tag_bind("level2-","<Button-1>", level02 )
 canvas.tag_bind("level3-","<Button-1>", level03 )
+root.bind("<Key>", start_move)
+root.bind("<KeyRelease>", stop_move)
 
 #=> MAIN ROOT
 # ---------------------------------------------------------------------------
