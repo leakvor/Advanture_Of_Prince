@@ -293,6 +293,7 @@ def back(event):
 #=> CREATE GAME SHOW
 # ---------------------------------------------------------------------------
 def home():
+    Start_Sound()
     canvas.create_image(1, 0, image=game_start, anchor='nw')
     canvas.create_image(500,500,image=story_list, tags="story")
     canvas.create_image(700,500, image=button_play, tags="startgame")
