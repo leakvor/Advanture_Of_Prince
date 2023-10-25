@@ -106,13 +106,14 @@ def level01(event):
     canvas.create_image(1290,30, image=door , tags="DOOR", anchor=NW)
 # ==================  LONG STONE IMAGE ===============
     canvas.create_image(500,500, image = long_wall , tags="PLATFORM", anchor=NW)
-    canvas.create_image(10,530, image = long_wall , tags="PLATFORM", anchor=NW)
+    canvas.create_image(30,530, image = long_wall , tags="PLATFORM", anchor=NW)
     canvas.create_image(750,600, image = long_wall , tags="PLATFORM", anchor=NW)
-    canvas.create_image(250,400, image = long_wall ,tags="PLATFORM", anchor=NW)
-    canvas.create_image(380,230, image = long_wall ,tags="PLATFORM", anchor=NW)
-    canvas.create_image(650,180, image = long_wall ,tags="PLATFORM", anchor=NW)
+    canvas.create_image(250,450, image = long_wall ,tags="PLATFORM", anchor=NW)
+    canvas.create_image(380,330, image = long_wall ,tags="PLATFORM", anchor=NW)
+    canvas.create_image(560,200, image = long_wall ,tags="PLATFORM", anchor=NW)
     canvas.create_image(680,380, image = long_wall ,tags="PLATFORM", anchor=NW)
-    canvas.create_image(1000,190, image = long_wall ,tags="PLATFORM", anchor=NW)
+    canvas.create_image(810,250, image = long_wall ,tags="PLATFORM", anchor=NW)
+    canvas.create_image(950,135, image = long_wall ,tags="PLATFORM", anchor=NW)
     canvas.create_image(1100,380, image = long_wall ,tags="PLATFORM", anchor=NW)
     canvas.create_image(920,490, image = long_wall ,tags="PLATFORM", anchor=NW)
     canvas.create_image(1225,100, image = long_wall ,tags="PLATFORM", anchor=NW)
@@ -120,19 +121,18 @@ def level01(event):
     canvas.create_image(80, 480, image = water , tags = "WATER", anchor=NW)
     canvas.create_image(100, 480, image = coin , tags = "COIN", anchor=NW)
     canvas.create_image(720, 330, image = coin , tags = "COIN", anchor=NW)
-    canvas.create_image(720, 130, image = coin , tags = "COIN", anchor=NW)
+    canvas.create_image(620, 150, image = coin , tags = "COIN", anchor=NW)
     # ==================  WATER IMAGE ===============
-    canvas.create_image(500,200, image=water, tags="WATER")
+    canvas.create_image(500,300, image=water, tags="WATER")
     canvas.create_image(550,470, image=water, tags="WATER")
     canvas.create_image(1000,460, image=water, tags="WATER")
-    canvas.create_image(340,370, image=water, tags="WATER")
-    canvas.create_image(1060,160, image=water, tags="WATER")
+    canvas.create_image(340,420, image=water, tags="WATER")
+    canvas.create_image(1040,110, image=water, tags="WATER")
     # ================== BOOM IMAGE =================
     canvas.create_image(610,485, image=boom, tags="BOOM")
     # ================== FIRE IMAGE =================
-    canvas.create_image(440,210, image=fire,tags="FIRE")
+    canvas.create_image(440,310, image=fire,tags="FIRE")
     canvas.create_image(800,360, image=fire,tags="FIRE")
-    canvas.create_image(1120,170, image=fire,tags="FIRE")
     # ==================  PLAYER ===============
     player_id = canvas.create_image(30,50, image = hero, anchor=NW)
     # ==================  MONSTER IMAGE ===============
@@ -140,7 +140,7 @@ def level01(event):
     canvas.create_image(1200,340, image=monster, tags="MONSTER")
     # ================== FLOWER IMAGE ==================
     canvas.create_image(900,580, image=flower)
-    canvas.create_image(660,160, image=flower)
+    canvas.create_image(570,180, image=flower)
     canvas.create_image(1373,70, image=flower)
     canvas.create_image(1110,360, image=flower)
     canvas.create_rectangle(0,730,SCREEN_WIDTH,SCREEN_HEIGHT,fill="black",tags="PLATFORM")
@@ -296,6 +296,7 @@ def back(event):
 #=> CREATE GAME SHOW
 # ---------------------------------------------------------------------------
 def home():
+    Start_Sound()
     canvas.create_image(1, 0, image=game_start, anchor='nw')
     canvas.create_image(500,500,image=story_list, tags="story")
     canvas.create_image(700,500, image=button_play, tags="startgame")
@@ -562,7 +563,7 @@ def update_score():
 #=> ALLOW WINDOWS KEYS AND TAGES BIND
 # ---------------------------------------------------------------------------
 canvas.tag_bind("help","<Button-1>",introdution )
-canvas.tag_bind("story","<Button-1>", level01)
+canvas.tag_bind("story","<Button-1>", story)
 canvas.tag_bind("backhome","<Button-1>", back)
 canvas.tag_bind("button_level","<Button-1>", alllevels)
 canvas.tag_bind("startgame","<Button-1>", startGame )
