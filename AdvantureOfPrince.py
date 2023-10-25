@@ -480,6 +480,52 @@ def stop_move(event):
     if event.keysym in keyPressed:
         keyPressed.remove(event.keysym)
 
+# =========================== SOUND =========================
+def Lose_Sound():
+    mixer.init() 
+    mixer.music.load('sound/Game-Over.mp3') 
+    mixer.music.play()
+
+def Start_Sound():
+    mixer.init() 
+    mixer.music.load('sound/open.mp3') 
+    mixer.music.play()
+
+def Boom_Sound():
+    mixer.init() 
+    mixer.music.load('sound/boom.mp3') 
+    mixer.music.play()
+
+def Coin_Sound():
+    mixer.init() 
+    mixer.music.load('sound/coin.mp3') 
+    mixer.music.play()
+    
+def Jump_sound():
+    mixer.init() 
+    mixer.music.load('sound/jump.mp3') 
+    mixer.music.play()
+
+def Water_sound():
+    mixer.init() 
+    mixer.music.load('sound/water.mp3') 
+    mixer.music.play()
+
+def door_sound():
+    mixer.init() 
+    mixer.music.load('sound/door.mp3') 
+    mixer.music.play()
+
+def monster_sound():
+    mixer.init() 
+    mixer.music.load('sound/monster.mp3') 
+    mixer.music.play()
+    
+
+def Win_sound():
+    mixer.init() 
+    mixer.music.load('sound/meet-queen.mp3') 
+    mixer.music.play()
 #=> ALLOW WINDOWS KEYS AND TAGES BIND
 # ---------------------------------------------------------------------------
 canvas.tag_bind("help","<Button-1>",introdution )
