@@ -117,7 +117,8 @@ def level01(event):
     canvas.create_image(920,490, image = long_wall ,tags="PLATFORM", anchor=NW)
     canvas.create_image(1225,100, image = long_wall ,tags="PLATFORM", anchor=NW)
     # ================== COIN IMAGE ======================
-    canvas.create_image(0, 480, image = coin , tags = "COIN", anchor=NW)
+    canvas.create_image(80, 480, image = water , tags = "WATER", anchor=NW)
+    canvas.create_image(100, 480, image = coin , tags = "COIN", anchor=NW)
     canvas.create_image(720, 330, image = coin , tags = "COIN", anchor=NW)
     canvas.create_image(720, 130, image = coin , tags = "COIN", anchor=NW)
     # ==================  WATER IMAGE ===============
@@ -430,7 +431,7 @@ def move():
             Water_sound()
             canvas.delete(get_water)
             # canvas.create_image(coord[0], coord[1], image=skin)
-            score += coin_score
+            score += water_score
             update_score()
             
         if get_coin > 0:
