@@ -13,7 +13,7 @@ import random
 SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 740
 GRAVITY_FORCE = 9
-JUMP_FORCE = 23
+JUMP_FORCE = 25
 SPEED = 5
 TIMED_LOOP = 10
 
@@ -82,6 +82,23 @@ back_to_game=tk.PhotoImage(file='image/back.png')
  # ==================  PLAYER ===============
 player_id=canvas.create_image(20,50, image = hero)
 
+ # ==================  SCROLL ===============
+scrollbar_bottom = tk.Scrollbar(root, orient='horizontal', command=canvas.xview)
+canvas.configure(xscrollcommand=scrollbar_bottom.set)
+scrollbar_bottom.place(relx=0, rely=1, relwidth=1, anchor='sw')
+
+def scroll_background():
+    canvas.move(background1,-1,0)
+    canvas.move(background2,-1,0)
+    if canvas.coords(background1)[0]<-SCREEN_WIDTH:
+        canvas.coords(background1,SCREEN_WIDTH,0)
+    elif canvas.coords(background2)[0]<-SCREEN_WIDTH:
+        canvas.coords(background2,SCREEN_WIDTH,0)
+    canvas.after(5,scroll_background)
+
+background1 = canvas.create_image(1, 0, image= level1_bg, anchor="nw")
+background2 = canvas.create_image(SCREEN_WIDTH, 0, image= level1_bg , anchor="nw")
+
 #=========================== ALL LEVELS =======================
 def alllevels():
     canvas.delete("all")
@@ -95,10 +112,16 @@ def alllevels():
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 #===========================LEVEL1 =======================
 def level01(event):
+    global player_id, score_id, play_again,background1,background2
     canvas.delete("all")
     global player_id, score_id
     canvas.create_image(1, 0, image= level1_bg, anchor="nw")
     score = 0
+    play_again=0
+    background1 = canvas.create_image(1, 0, image= level1_bg, anchor="nw")
+    background2 = canvas.create_image(SCREEN_WIDTH, 0, image= level1_bg , anchor="nw")
+    scroll_background()
+    # canvas.create_image(0,0,image=level1_bg, anchor='nw')
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 # ==================  DOOR  ===============
     canvas.create_image(1290,30, image=door , tags="DOOR", anchor=NW)
@@ -146,10 +169,15 @@ def level01(event):
     gravity()
 # =======================> LEVEL_2 <==========================
 def level02(event):
-    global player_id, score_id
+    global player_id, score_id, play_again,background1,background2
     canvas.delete("all")
     canvas.create_image(1, 0, image= level2, anchor="nw")
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
+    play_again=1
+    canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
+    background1 = canvas.create_image(1, 0, image= level2, anchor="nw")
+    background2 = canvas.create_image(SCREEN_WIDTH, 0, image= level2 , anchor="nw")
+    scroll_background()
     # ============= long_wall =================
     canvas.create_image(0,600, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(60,600, image=long_wall, tags='PLATFORM', anchor=NW)
@@ -220,10 +248,13 @@ def level02(event):
     gravity()
     #=========================== LEVEL3 =======================
 def level03(event):
-    global player_id,score_id
+    global player_id,score_id,play_again,background2,background1
     canvas.delete("all")
-    canvas.create_image(1, 0, image= level3, anchor="nw")
+    play_again=2
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
+    background1 = canvas.create_image(1, 0, image= level3, anchor="nw")
+    background2 = canvas.create_image(SCREEN_WIDTH, 0, image= level3 , anchor="nw")
+    scroll_background()
 # ========================== WHITE STONE IMAGE ================
 
     canvas.create_image(40, 630, image = long_wall, tags = "PLATFORM", anchor=NW)
@@ -449,21 +480,24 @@ def move():
         get_door1 = check_movement_door1()
         get_door2 = check_movement_door2()
         get_queen = check_movement_queen()
+
+# ==============> WHEN WATER <==================
         if get_water > 0:
             coord = canvas.coords(get_water)
             Water_sound()
             canvas.delete(get_water)
             # canvas.create_image(coord[0], coord[1], image=skin)
             score += water_score
+            score += coin_score
             update_score()
-            
+# ==============> WHEN COIN <==================    
         if get_coin > 0:
             coord = canvas.coords(get_coin)
             Coin_Sound()
             canvas.delete(get_coin)
             score += coin_score
             update_score()
-
+# ==============> WHEN FIRE <==================
         if get_fire > 0:
             coord = canvas.coords(get_fire)
             Fire_Sound()
@@ -472,23 +506,26 @@ def move():
             if score<0:
                 gameOver()  
             
+                gameOver()
+            update_score()  
+# ==============> WHEN BOOM <==================            
         if get_boom > 0:
             coord = canvas.coords(get_boom)
             Boom_Sound()
             canvas.delete(get_boom)
             gameOver()
-    
+# ==============> WHEN MONSTER <==================    
         if get_monster > 0:
             coord = canvas.coords(get_monster)
             monster_sound()
             canvas.delete(get_monster)
             gameOver()
-    
+# ==============> WHEN QUEEN <==================    
         if get_queen > 0:
             coord = canvas.coords(get_queen)
             canvas.delete(get_monster)
             gameWin()
-        
+# ==============> WHEN DOOR1 <==================        
         if get_door1> 0:
             coord = canvas.coords(get_door1)
             if score>20:
@@ -496,6 +533,10 @@ def move():
                 door_sound()
                 level02(Event)
                 
+            door_sound()
+            canvas.delete(get_door1)
+            level02()
+# ==============> WHEN DOOR2 <==================               
         if get_door2> 0:
             coord = canvas.coords(get_door2)
             door_sound()
@@ -503,6 +544,7 @@ def move():
             canvas.delete(get_door2)
             level03(Event)
 
+            level02()
 # ==============>GRAVITY <==================        
 def gravity():
     if check_movement(0, GRAVITY_FORCE, True):
@@ -566,38 +608,38 @@ def Fire_Sound():
     mixer.music.play()
 # ==============> GAMEOVER <==================
 
+# ==============> GAMEOVER <==================
 def gameOver():
     canvas.delete('all')
     Lose_Sound()
     score=0
     canvas.create_image(1, 0, image=game_over, anchor = 'nw')
-    canvas.create_image(600, 350, image=retry, anchor = 'nw',tags='RETRY')
+    if play_again == 0:
+        canvas.create_image(600, 350, image=retry, anchor = 'nw',tags='level1-')
+    elif play_again == 1:
+        canvas.create_image(600, 350, image=retry, anchor = 'nw',tags='level2-')
+    elif play_again == 2:
+        canvas.create_image(600, 350, image=retry, anchor = 'nw',tags='level3-')
     canvas.create_image(600, 450, image=back_to_game, anchor = 'nw', tags='backhome')
-
-# ==============> RETRY <=====================
-
-def Retry (event) :
-    canvas.delete('all')
-    if level01(event):
-        level01(event)
-    elif level02(event):
-        level02(event)
-    elif level03(event):
-        level03(event)
-    
 
 # ==============> GAMEOVER <==================
 def gameWin():    
     canvas.delete('all')
     Win_sound()
     canvas.create_image(1, 0, image=game_win, anchor = 'nw')
-    canvas.create_image(570, 350, image=play_again, anchor = 'nw', tags='level1-')
+    if play_again == 0:
+        canvas.create_image(600, 350, image=play_again, anchor = 'nw',tags='level1-')
+    elif play_again == 1:
+        canvas.create_image(600, 350, image=play_again, anchor = 'nw',tags='level2-')
+    elif play_again == 2:
+        canvas.create_image(600, 350, image=play_again, anchor = 'nw',tags='level3-')
     canvas.create_image(600, 450, image=button_level, anchor = 'nw',tags='button_level')
     canvas.create_image(600, 500, image=button_exists, anchor = 'nw',tags='backhome')
 
 # ==============> UPDATE SCORE <==================
 def update_score():
     canvas.itemconfigure(score_id, text="Score: " + str(score))
+
 #=> ALLOW WINDOWS KEYS AND TAGES BIND
 # ---------------------------------------------------------------------------
 canvas.tag_bind("help","<Button-1>",introdution )
@@ -610,7 +652,7 @@ canvas.tag_bind("level2-","<Button-1>", level02 )
 canvas.tag_bind("level3-","<Button-1>", level03 )
 root.bind("<Key>", start_move)
 root.bind("<KeyRelease>", stop_move)
-canvas.tag_bind("RETRY","<Button-1>", Retry )
+# canvas.tag_bind("RETRY","<Button-1>", Retry )
 #=> MAIN ROOT
 # ---------------------------------------------------------------------------
 canvas.pack(expand=True, fill='both')
