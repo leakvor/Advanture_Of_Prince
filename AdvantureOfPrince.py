@@ -116,10 +116,8 @@ def alllevels():
 #===========================LEVEL1 =======================
 def level01(event):
     canvas.delete("all")
-    global player_id, score_id,background1,background2
-    background1 = canvas.create_image(1, 0, image= level1_bg, anchor="nw")
-    background2 = canvas.create_image(SCREEN_WIDTH, 0, image=level1_bg , anchor="nw")
-    scroll_background()
+    global player_id, score_id
+    canvas.create_image(1, 0, image= level1_bg, anchor="nw")
     score = 0
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 # ==================  DOOR  ===============
@@ -170,11 +168,9 @@ def level01(event):
 # =======================> LEVEL_2 <==========================
 
 def level02(event):
-    global player_id, score_id,background1,background2
+    global player_id, score_id
     canvas.delete("all")
-    background1 = canvas.create_image(1, 0, image= level2, anchor="nw")
-    background2 = canvas.create_image(SCREEN_WIDTH, 0, image=level2 , anchor="nw")
-    scroll_background()
+    canvas.create_image(1, 0, image= level2, anchor="nw")
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 
     # ============= long_wall =================
@@ -237,11 +233,9 @@ def level02(event):
     #=========================== LEVEL3 =======================
 
 def level03(event):
-    global player_id,score_id,background1,background2
+    global player_id,score_id
     canvas.delete("all")
-    background1 = canvas.create_image(1, 0, image= level3, anchor="nw")
-    background2 = canvas.create_image(SCREEN_WIDTH, 0, image=level3 , anchor="nw")
-    scroll_background()
+    canvas.create_image(1, 0, image= level3, anchor="nw")
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 # ========================== WHITE STONE IMAGE ================
 
@@ -285,8 +279,8 @@ def level03(event):
     canvas.create_image(600,600, image = coin, tags = "COIN", anchor=NW)
     canvas.create_image(820,530, image = coin, tags = "COIN", anchor=NW)
     canvas.create_image(1000,80, image = coin, tags = "COIN", anchor=NW)
+    canvas.create_image(500,600, image = coin, tags = "COIN", anchor=NW)
 # =========================== FIRE IMAGE =========================
-    canvas.create_image(500,600, image = fire, tags = "FIRE", anchor=NW)
     canvas.create_image(1250,480, image = fire, tags = "FIRE", anchor=NW)
     canvas.create_image(1110, 310, image = fire, tags = "FIRE", anchor=NW)
     # canvas.create_image(110, 600, image = fire, tags = "FIRE", anchor=NW)
