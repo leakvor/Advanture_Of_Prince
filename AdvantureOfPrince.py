@@ -420,9 +420,9 @@ def move():
         x = 0
         if "Left" in keyPressed:
             x -= SPEED
-        if "Right" in keyPressed:
+        elif "Right" in keyPressed:
             x += SPEED
-        if "space" in keyPressed and not check_movement(0, GRAVITY_FORCE, True):
+        elif "space" in keyPressed and not check_movement(0, GRAVITY_FORCE, True):
             jump(JUMP_FORCE)
         if check_movement(x):
             canvas.move(player_id, x, 0)
@@ -483,6 +483,7 @@ def move():
             door_sound()
             canvas.delete(get_door2)
             level03()
+
 # ==============>GRAVITY <==================        
 def gravity():
     if check_movement(0, GRAVITY_FORCE, True):
