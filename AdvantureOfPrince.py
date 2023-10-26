@@ -97,7 +97,6 @@ def alllevels():
     # ______________________________LEVEL3_______________________________________
     canvas.create_image(950,250, image = level3_list, anchor = "nw", tags="level3-")
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
-
 #===========================LEVEL1 =======================
 def level01(event):
     canvas.delete("all")
@@ -149,20 +148,15 @@ def level01(event):
     canvas.create_rectangle(0,730,SCREEN_WIDTH,SCREEN_HEIGHT,fill="black",tags="PLATFORM")
     score_id = canvas.create_text(1300, 15, text="Score:", font=("bold", 15), fill='white')
     gravity()
-
 # =======================> LEVEL_2 <==========================
-
 def level02(event):
     global player_id, score_id
     canvas.delete("all")
     canvas.create_image(1, 0, image= level2, anchor="nw")
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
-
     # ============= long_wall =================
-
     canvas.create_image(0,600, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(60,600, image=long_wall, tags='PLATFORM', anchor=NW)
-    # canvas.create_image(60,500, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(200,500, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(300,400, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(320,400, image=long_wall, tags='PLATFORM', anchor=NW)
@@ -172,84 +166,63 @@ def level02(event):
     canvas.create_image(500, 200, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(600, 100, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(670, 100, image=long_wall, tags='PLATFORM', anchor=NW)
-
     canvas.create_image(400, 625, image=long_wall, tags='PLATFORM', anchor=NW)
-
     canvas.create_image(500, 550, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(500, 575, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(500, 600, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(500, 625, image=long_wall, tags='PLATFORM', anchor=NW)
-
     canvas.create_image(600,450, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(700, 350, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(800, 250, image=long_wall, tags='PLATFORM', anchor=NW)
-
     canvas.create_image(900, 150,image=long_wall, tags='PLATFORM', anchor=NW)
-
     canvas.create_image(850, 350, image=long_wall, tags='PLATFORM', anchor=NW)
-
     canvas.create_image(950, 625, image=long_wall, tags='PLATFORM', anchor=NW)
-
     canvas.create_image(1050, 550, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(1050, 575, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(1050, 600, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(1200, 600, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(1050, 625, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(1250, 450, image=long_wall,  tags='PLATFORM', anchor=NW)
-        # =============== flower ===================
-
+    # =============== flower ===================
     canvas.create_image(1260, 430, image = flower)
     canvas.create_image(650, 520, image = flower)
     canvas.create_image(830, 83, image = flower)
     canvas.create_image(210, 480, image = flower)
-    
     # =============== DOOR ====================
     canvas.create_image(1335,405, image=door2 , tags="DOOR2", anchor=NW)
-
     # =============== WATER ===================
     canvas.create_image(1150, 480, image= water, tags='WATER', anchor=NW)
     canvas.create_image(700, 280, image= water, tags='WATER', anchor=NW)
     canvas.create_image(180, 230, image= water, tags='WATER', anchor=NW)
     canvas.create_image(450, 230, image= water, tags='WATER', anchor=NW)
     canvas.create_image(500, 480, image= water, tags='WATER', anchor=NW)
-
     # =============== FIRE ===================
     canvas.create_image(220, 245, image=fire, tags ='FIRE', anchor=NW)
     canvas.create_image(270, 150, image=fire, tags ='FIRE', anchor=NW)
     canvas.create_image(700, 50, image=fire, tags ='FIRE', anchor=NW)
     canvas.create_image(850, 190, image=fire, tags ='FIRE', anchor=NW)
     canvas.create_image(300, 440, image=fire, tags ='FIRE', anchor=NW)
-
     # =============== BOOM ===================
     canvas.create_image(700, 420, image=boom, tags='BOOM', anchor=NW)
     canvas.create_image(390, 370, image=boom, tags='BOOM', anchor=NW)
     canvas.create_image(600, 170, image=boom, tags='BOOM', anchor=NW)
-
     # =============== MONSTER ===================
     canvas.create_image(800, 260, image=monster, tags='MONSTER', anchor=NW)
     canvas.create_image(1250, 520, image=monster, tags='MONSTER', anchor=NW)
-
-
     # =============== COIN ===================
-    
     canvas.create_image(600, 50, image=coin, tags='COIN', anchor=NW)
     canvas.create_image(640, 50, image=coin, tags='COIN', anchor=NW)
     canvas.create_image(500, 250, image=coin, tags='COIN', anchor=NW)
     canvas.create_image(1000, 100, image=coin, tags='COIN', anchor=NW)
     canvas.create_image(960, 100, image=coin, tags='COIN', anchor=NW)
     canvas.create_image(1100, 490, image=coin, tags='COIN', anchor=NW)
-
-
     #   =============== PLAYER ===================
-    
     player_id = canvas.create_image(30,50, image = hero, anchor=NW)
     canvas.create_rectangle(0,730,SCREEN_WIDTH,SCREEN_HEIGHT,fill="black",tags="PLATFORM")
     #   =============== PLAYER ===================
     score_id = canvas.create_text(1300, 15, text="Score:", font=("bold", 15), fill='white')
     gravity()
-
     #=========================== LEVEL3 =======================
-
 def level03(event):
     global player_id,score_id
     canvas.delete("all")
@@ -257,54 +230,63 @@ def level03(event):
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 # ========================== WHITE STONE IMAGE ================
 
-    canvas.create_image(40, 620, image = long_wall, tags = "PLATFORM", anchor=NW)
+    canvas.create_image(40, 630, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(600, 330, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(400, 430, image = long_wall,  tags = "PLATFORM", anchor=NW)
     canvas.create_image(200, 530, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(800, 230, image = long_wall, tags = "PLATFORM", anchor=NW)
+    canvas.create_image(850, 230, image = long_wall, tags = "PLATFORM", anchor=NW)
+    canvas.create_image(770, 70, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(1000, 130, image = long_wall, tags = "PLATFORM", anchor=NW)
+    canvas.create_image(1050, 130, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(330, 230, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(550, 130, image =long_wall, tags = "PLATFORM", anchor=NW)
     
-    canvas.create_image(400, 650, image =long_wall, tags = "PLATFORM", anchor=NW)
-    canvas.create_image(700, 580, image = long_wall, tags = "PLATFORM", anchor=NW)
+    canvas.create_image(400, 630, image =long_wall, tags = "PLATFORM", anchor=NW)
+    canvas.create_image(700, 550, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(900, 450, image = long_wall, tags = "PLATFORM", anchor=NW)
-    canvas.create_image(550, 650, image = long_wall, tags = "PLATFORM", anchor=NW)
+    canvas.create_image(550, 630, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(1110, 350, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(1250, 530, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(1250, 700, image = long_wall, tags = "PLATFORM", anchor=NW)
-    canvas.create_image(950, 650, image = long_wall, tags = "PLATFORM", anchor=NW)
+    canvas.create_image(950, 620, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(1250, 230, image = long_wall, tags = "PLATFORM", anchor=NW)
+    canvas.create_image(1300, 130, image = long_wall, tags = "PLATFORM", anchor=NW)
     canvas.create_image(120, 130, image = long_wall, tags = "PLATFORM", anchor=NW)
-# =========================== PLAYER =============================
-    # canvas.create_image(100,550, image = hero, anchor=NW)
-# =========================== PRINCESS ===========================
-    canvas.create_image(1300,600, image = queen, tags = "QUEEN", anchor=NW)
+# =========================== FLOWER ===========================
+    canvas.create_image(500, 400, image = flower)
+    canvas.create_image(740, 310, image = flower)
+    canvas.create_image(700, 610, image = flower)
+    canvas.create_image(980, 200, image = flower)
+    canvas.create_image(920, 50, image = flower)
+# ========================= PRINCESS ===========================
+    canvas.create_image(1350,56, image = queen, tags = "QUEEN", anchor=NW)
 # =========================== MONSTER ============================
-    canvas.create_image(500, 350, image = monster, tags = "MONSTER", anchor=NW)
     canvas.create_image(90, 40, image = monster, tags = "MONSTER", anchor=NW)
-    canvas.create_image(1050, 560, image = monster, tags = "MONSTER", anchor=NW)
+    canvas.create_image(1020, 540, image = monster, tags = "MONSTER", anchor=NW)
 # =========================== WATER IMAGE ========================
     canvas.create_image(250,460, image = water, tags = 'WATER', anchor=NW)
+    canvas.create_image(660,63, image = water, tags = 'WATER', anchor=NW)
+    canvas.create_image(800,7, image = water, tags = 'WATER', anchor=NW)
     canvas.create_image(700,265, image = water, tags = 'WATER', anchor=NW)
-    canvas.create_image(350,170, image = water, tags = 'WATER', anchor=NW)
-    canvas.create_image(1330,470, image = water, tags = 'WATER', anchor=NW)
+    canvas.create_image(350,160, image = water, tags = 'WATER', anchor=NW)
+    canvas.create_image(1330,460, image = water, tags = 'WATER', anchor=NW)
 # =========================== COIN IMAGE =========================
     canvas.create_image(300,480, image = coin, tags = "COIN", anchor=NW)
     canvas.create_image(1000,400, image = coin, tags = "COIN", anchor=NW)
     canvas.create_image(420,180, image = coin, tags = "COIN", anchor=NW)
     canvas.create_image(250,80, image = coin, tags = "COIN", anchor=NW)
-    canvas.create_image(600,600, image = coin, tags = "COIN", anchor=NW)
-    canvas.create_image(820,530, image = coin, tags = "COIN", anchor=NW)
+    canvas.create_image(600,580, image = coin, tags = "COIN", anchor=NW)
+    canvas.create_image(820,500, image = coin, tags = "COIN", anchor=NW)
     canvas.create_image(1000,80, image = coin, tags = "COIN", anchor=NW)
     canvas.create_image(500,600, image = coin, tags = "COIN", anchor=NW)
 # =========================== FIRE IMAGE =========================
+    canvas.create_image(500,600, image = fire, tags = "FIRE", anchor=NW)
     canvas.create_image(1250,480, image = fire, tags = "FIRE", anchor=NW)
-    canvas.create_image(1110, 310, image = fire, tags = "FIRE", anchor=NW)
-    # canvas.create_image(110, 600, image = fire, tags = "FIRE", anchor=NW)
+    canvas.create_image(900, 180, image = fire, tags = "FIRE", anchor=NW)
 # =========================== BOOM IMAGE =========================
-    canvas.create_image(620,300, image = boom, tags = "BOOM", anchor=NW)
-    canvas.create_image(750,550, image = boom, tags = "BOOM", anchor=NW)
+    canvas.create_image(650,300, image = boom, tags = "BOOM", anchor=NW)
+    canvas.create_image(770,520, image = boom, tags = "BOOM", anchor=NW)
     canvas.create_image(1350,200, image = boom, tags = "BOOM", anchor=NW)
 # =========================== PLAYER IMAGE =========================
     canvas.create_rectangle(0,730,SCREEN_WIDTH,SCREEN_HEIGHT,fill="black",tags="PLATFORM")
