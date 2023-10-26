@@ -27,6 +27,7 @@ water_score=7
 fire_score=10
 
 
+
 # ---------------------------------------------------------------------------
 root = tk.Tk()
 root.geometry(str(SCREEN_WIDTH)+"x"+str(SCREEN_HEIGHT))
@@ -594,6 +595,7 @@ def gameWin():
     canvas.create_image(600, 450, image=button_level, anchor = 'nw',tags='button_level')
     canvas.create_image(600, 500, image=button_exists, anchor = 'nw',tags='backhome')
 
+# ==============> UPDATE SCORE <==================
 def update_score():
     canvas.itemconfigure(score_id, text="Score: " + str(score))
 #=> ALLOW WINDOWS KEYS AND TAGES BIND
