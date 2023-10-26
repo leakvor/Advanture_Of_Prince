@@ -82,6 +82,22 @@ play_again=tk.PhotoImage(file='image/playAgain.png')
 retry=tk.PhotoImage(file='image/Retry.png')
 back_to_game=tk.PhotoImage(file='image/back.png')
 
+scrollbar_bottom = tk.Scrollbar(root, orient='horizontal', command=canvas.xview)
+canvas.configure(xscrollcommand=scrollbar_bottom.set)
+scrollbar_bottom.place(relx=0, rely=1, relwidth=1, anchor='sw')
+
+def scroll_background():
+    canvas.move(background1,-1,0)
+    canvas.move(background2,-1,0)
+    if canvas.coords(background1)[0]<-SCREEN_WIDTH:
+        canvas.coords(background1,SCREEN_WIDTH,0)
+    elif canvas.coords(background2)[0]<-SCREEN_WIDTH:
+        canvas.coords(background2,SCREEN_HEIGHT,0)
+    canvas.after(5,scroll_background)
+
+background1 = canvas.create_image(1, 0, image= level1_bg, anchor="nw")
+background2 = canvas.create_image(SCREEN_WIDTH, 0, image=level1_bg , anchor="nw")
+
  # ==================  PLAYER ===============
 player_id=canvas.create_image(20,50, image = hero)
 
@@ -100,8 +116,11 @@ def alllevels():
 #===========================LEVEL1 =======================
 def level01(event):
     canvas.delete("all")
-    global player_id, score_id
-    canvas.create_image(0,0,image=level1_bg, anchor='nw')
+    global player_id, score_id,background1,background2
+    background1 = canvas.create_image(1, 0, image= level1_bg, anchor="nw")
+    background2 = canvas.create_image(SCREEN_WIDTH, 0, image=level1_bg , anchor="nw")
+    scroll_background()
+    score = 0
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 # ==================  DOOR  ===============
     canvas.create_image(1290,30, image=door , tags="DOOR", anchor=NW)
@@ -151,9 +170,11 @@ def level01(event):
 # =======================> LEVEL_2 <==========================
 
 def level02(event):
-    global player_id, score_id
+    global player_id, score_id,background1,background2
     canvas.delete("all")
-    canvas.create_image(0,0,image=level2,anchor='nw')
+    background1 = canvas.create_image(1, 0, image= level2, anchor="nw")
+    background2 = canvas.create_image(SCREEN_WIDTH, 0, image=level2 , anchor="nw")
+    scroll_background()
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 
     # ============= long_wall =================
@@ -216,9 +237,11 @@ def level02(event):
     #=========================== LEVEL3 =======================
 
 def level03(event):
-    global player_id
+    global player_id,score_id,background1,background2
     canvas.delete("all")
-    canvas.create_image(0,0,image=level3,anchor='nw')
+    background1 = canvas.create_image(1, 0, image= level3, anchor="nw")
+    background2 = canvas.create_image(SCREEN_WIDTH, 0, image=level3 , anchor="nw")
+    scroll_background()
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 # ========================== WHITE STONE IMAGE ================
 
@@ -481,6 +504,7 @@ def move():
         if get_door2> 0:
             coord = canvas.coords(get_door2)
             door_sound()
+            score = 0
             canvas.delete(get_door2)
             level03()
 
@@ -545,6 +569,7 @@ def Win_sound():
 def gameOver():
     canvas.delete('all')
     Lose_Sound()
+    score=0
     canvas.create_image(1, 0, image=game_over, anchor = 'nw')
     canvas.create_image(600, 350, image=retry, anchor = 'nw',tags='RETRY')
     canvas.create_image(600, 450, image=back_to_game, anchor = 'nw', tags='backhome')
