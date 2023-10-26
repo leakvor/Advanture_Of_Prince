@@ -179,7 +179,7 @@ def level02(event):
 
     # ============= long_wall =================
 
-    canvas.create_image(50,650, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(50,600, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(150,250, image = long_wall , tags="PLATFORM", anchor=NW)
     canvas.create_image(200, 450, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(420, 550, image=long_wall, tags='PLATFORM', anchor=NW)
