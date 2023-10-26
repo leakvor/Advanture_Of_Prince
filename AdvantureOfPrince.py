@@ -120,6 +120,7 @@ def level01(event):
     background1 = canvas.create_image(1, 0, image= level1_bg, anchor="nw")
     background2 = canvas.create_image(SCREEN_WIDTH, 0, image=level1_bg , anchor="nw")
     scroll_background()
+    score = 0
     canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 # ==================  DOOR  ===============
     canvas.create_image(1290,30, image=door , tags="DOOR", anchor=NW)
@@ -506,6 +507,7 @@ def move():
         if get_door2> 0:
             coord = canvas.coords(get_door2)
             door_sound()
+            score = 0
             canvas.delete(get_door2)
             # canvas.create_image(coord[0], coord[1], image=skin)
             level02()
