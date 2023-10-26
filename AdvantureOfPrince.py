@@ -238,7 +238,7 @@ def level02(event):
     #=========================== LEVEL3 =======================
 
 def level03(event):
-    global player_id
+    global player_id,score_id,background1,background2
     canvas.delete("all")
     background1 = canvas.create_image(1, 0, image= level3, anchor="nw")
     background2 = canvas.create_image(SCREEN_WIDTH, 0, image=level3 , anchor="nw")
@@ -572,6 +572,7 @@ def Win_sound():
 def gameOver():
     canvas.delete('all')
     Lose_Sound()
+    score=0
     canvas.create_image(1, 0, image=game_over, anchor = 'nw')
     canvas.create_image(600, 350, image=retry, anchor = 'nw',tags='RETRY')
     canvas.create_image(600, 450, image=back_to_game, anchor = 'nw', tags='backhome')
