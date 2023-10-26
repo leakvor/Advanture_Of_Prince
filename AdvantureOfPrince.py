@@ -454,8 +454,7 @@ def move():
             canvas.delete(get_fire)
             score -= fire_score
             if score<0:
-                gameOver()
-            update_score()  
+                gameOver()  
             
         if get_boom > 0:
             coord = canvas.coords(get_boom)
@@ -478,14 +477,12 @@ def move():
             coord = canvas.coords(get_door1)
             door_sound()
             canvas.delete(get_door1)
-            # canvas.create_image(coord[0], coord[1], image=skin)
             level02()
         if get_door2> 0:
             coord = canvas.coords(get_door2)
             door_sound()
             canvas.delete(get_door2)
-            # canvas.create_image(coord[0], coord[1], image=skin)
-            level02()
+            level03()
 # ==============>GRAVITY <==================        
 def gravity():
     if check_movement(0, GRAVITY_FORCE, True):
