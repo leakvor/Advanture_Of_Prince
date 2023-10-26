@@ -13,7 +13,7 @@ import random
 SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 740
 GRAVITY_FORCE = 9
-JUMP_FORCE = 23
+JUMP_FORCE = 30
 SPEED = 5
 TIMED_LOOP = 10
 
@@ -23,8 +23,8 @@ score=0
 notEvent=False
 hight_score=0
 keyPressed = []
-coin_score=1
-water_score=5
+coin_score=4
+water_score=7
 fire_score=10
 isWin=False
 isLose=False
@@ -82,21 +82,6 @@ play_again=tk.PhotoImage(file='image/playAgain.png')
 retry=tk.PhotoImage(file='image/Retry.png')
 back_to_game=tk.PhotoImage(file='image/back.png')
 
-scrollbar_bottom = tk.Scrollbar(root, orient='horizontal', command=canvas.xview)
-canvas.configure(xscrollcommand=scrollbar_bottom.set)
-scrollbar_bottom.place(relx=0, rely=1, relwidth=1, anchor='sw')
-
-def scroll_background():
-    canvas.move(background1,-1,0)
-    canvas.move(background2,-1,0)
-    if canvas.coords(background1)[0]<-SCREEN_WIDTH:
-        canvas.coords(background1,SCREEN_WIDTH,0)
-    elif canvas.coords(background2)[0]<-SCREEN_WIDTH:
-        canvas.coords(background2,SCREEN_HEIGHT,0)
-    canvas.after(5,scroll_background)
-
-background1 = canvas.create_image(1, 0, image= level1_bg, anchor="nw")
-background2 = canvas.create_image(SCREEN_WIDTH, 0, image=level1_bg , anchor="nw")
 
  # ==================  PLAYER ===============
 player_id=canvas.create_image(20,50, image = hero)
@@ -184,12 +169,12 @@ def level02(event):
 
     canvas.create_image(650,450, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(650, 250, image=long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(650, 650,image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(650, 620,image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(850, 350, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(850, 150, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(1050, 250, image= long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(1050, 450, image=long_wall,  tags='PLATFORM', anchor=NW)
-    canvas.create_image(1200, 650, image=long_wall,  tags='PLATFORM', anchor=NW)
+    canvas.create_image(1200, 630, image=long_wall,  tags='PLATFORM', anchor=NW)
     canvas.create_image(1250, 400, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(950, 600, image=long_wall, tags='PLATFORM', anchor=NW)    
 
@@ -205,7 +190,7 @@ def level02(event):
     # =============== FIRE ===================
     canvas.create_image(420, 300, image=fire, tags ='FIRE', anchor=NW)
     canvas.create_image(1300, 600, image=fire, tags ='FIRE', anchor=NW)
-    canvas.create_image(750, 600, image=fire, tags ='FIRE', anchor=NW)
+    canvas.create_image(690, 570, image=fire, tags ='FIRE', anchor=NW)
 
     # =============== BOOM ===================
     canvas.create_image(1080, 420, image=boom, tags='BOOM', anchor=NW)
@@ -441,6 +426,7 @@ def move():
             x += SPEED
         elif "space" in keyPressed and not check_movement(0, GRAVITY_FORCE, True):
             jump(JUMP_FORCE)
+            Jump_sound()
         if check_movement(x):
             canvas.move(player_id, x, 0)
         root.after(TIMED_LOOP, move)
@@ -462,12 +448,14 @@ def move():
             
         if get_coin > 0:
             coord = canvas.coords(get_coin)
+            Coin_Sound()
             canvas.delete(get_coin)
             score += coin_score
             update_score()
 
         if get_fire > 0:
             coord = canvas.coords(get_fire)
+            Fire_Sound()
             canvas.delete(get_fire)
             score -= fire_score
             if score<0:
@@ -492,15 +480,17 @@ def move():
         
         if get_door1> 0:
             coord = canvas.coords(get_door1)
-            door_sound()
-            canvas.delete(get_door1)
-            level02()
+            if score>20:
+                canvas.delete(get_door1)
+                door_sound()
+                level02(Event)
+                
         if get_door2> 0:
             coord = canvas.coords(get_door2)
             door_sound()
             score = 0
             canvas.delete(get_door2)
-            level03()
+            level03(Event)
 
 # ==============>GRAVITY <==================        
 def gravity():
@@ -545,7 +535,7 @@ def Water_sound():
 
 def door_sound():
     mixer.init() 
-    mixer.music.load('sound/door.mp3') 
+    mixer.music.load('sound/into door.mp3') 
     mixer.music.play()
 
 def monster_sound():
@@ -557,6 +547,11 @@ def monster_sound():
 def Win_sound():
     mixer.init() 
     mixer.music.load('sound/meet-queen.mp3') 
+    mixer.music.play()
+
+def Fire_Sound():
+    mixer.init() 
+    mixer.music.load('sound/fire.mp3') 
     mixer.music.play()
 # ==============> GAMEOVER <==================
 
