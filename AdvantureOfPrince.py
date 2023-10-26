@@ -179,52 +179,85 @@ def level02(event):
 
     # ============= long_wall =================
 
-    canvas.create_image(50,600, image=long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(150,250, image = long_wall , tags="PLATFORM", anchor=NW)
-    canvas.create_image(200, 450, image= long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(420, 550, image=long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(400, 150, image=long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(420, 350, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(0,600, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(60,600, image=long_wall, tags='PLATFORM', anchor=NW)
+    # canvas.create_image(60,500, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(200,500, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(300,400, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(320,400, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(120,300, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(220,200, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(400,300, image = long_wall , tags="PLATFORM", anchor=NW)
+    canvas.create_image(500, 200, image= long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(600, 100, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(670, 100, image=long_wall, tags='PLATFORM', anchor=NW)
 
-    canvas.create_image(650,450, image=long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(650, 250, image=long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(650, 650,image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(400, 625, image=long_wall, tags='PLATFORM', anchor=NW)
+
+    canvas.create_image(500, 550, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(500, 575, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(500, 600, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(500, 625, image=long_wall, tags='PLATFORM', anchor=NW)
+
+    canvas.create_image(600,450, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(700, 350, image=long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(800, 250, image=long_wall, tags='PLATFORM', anchor=NW)
+
+    canvas.create_image(900, 150,image=long_wall, tags='PLATFORM', anchor=NW)
+
     canvas.create_image(850, 350, image=long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(850, 150, image=long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(1050, 250, image= long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(1050, 450, image=long_wall,  tags='PLATFORM', anchor=NW)
-    canvas.create_image(1200, 650, image=long_wall,  tags='PLATFORM', anchor=NW)
-    canvas.create_image(1250, 400, image=long_wall, tags='PLATFORM', anchor=NW)
-    canvas.create_image(950, 600, image=long_wall, tags='PLATFORM', anchor=NW)    
 
+    canvas.create_image(950, 625, image=long_wall, tags='PLATFORM', anchor=NW)
+
+    canvas.create_image(1050, 550, image= long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(1050, 575, image= long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(1050, 600, image= long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(1200, 600, image= long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(1050, 625, image= long_wall, tags='PLATFORM', anchor=NW)
+    canvas.create_image(1250, 450, image=long_wall,  tags='PLATFORM', anchor=NW)
+        # =============== flower ===================
+
+    canvas.create_image(1260, 430, image = flower)
+    canvas.create_image(650, 520, image = flower)
+    canvas.create_image(830, 83, image = flower)
+    canvas.create_image(210, 480, image = flower)
+    
     # =============== DOOR ====================
-    canvas.create_image(1335,330, image=door2 , tags="DOOR2", anchor=NW)
+    canvas.create_image(1335,405, image=door2 , tags="DOOR2", anchor=NW)
 
     # =============== WATER ===================
-    canvas.create_image(1150, 380, image= water, tags='WATER', anchor=NW)
-    canvas.create_image(700, 180, image= water, tags='WATER', anchor=NW)
-    canvas.create_image(240, 190, image= water, tags='WATER', anchor=NW)
+    canvas.create_image(1150, 480, image= water, tags='WATER', anchor=NW)
+    canvas.create_image(700, 280, image= water, tags='WATER', anchor=NW)
+    canvas.create_image(180, 230, image= water, tags='WATER', anchor=NW)
+    canvas.create_image(450, 230, image= water, tags='WATER', anchor=NW)
     canvas.create_image(500, 480, image= water, tags='WATER', anchor=NW)
 
     # =============== FIRE ===================
-    canvas.create_image(420, 300, image=fire, tags ='FIRE', anchor=NW)
-    canvas.create_image(1300, 600, image=fire, tags ='FIRE', anchor=NW)
-    canvas.create_image(750, 600, image=fire, tags ='FIRE', anchor=NW)
+    canvas.create_image(220, 245, image=fire, tags ='FIRE', anchor=NW)
+    canvas.create_image(270, 150, image=fire, tags ='FIRE', anchor=NW)
+    canvas.create_image(700, 50, image=fire, tags ='FIRE', anchor=NW)
+    canvas.create_image(850, 190, image=fire, tags ='FIRE', anchor=NW)
+    canvas.create_image(300, 440, image=fire, tags ='FIRE', anchor=NW)
 
     # =============== BOOM ===================
-    canvas.create_image(1080, 420, image=boom, tags='BOOM', anchor=NW)
+    canvas.create_image(700, 420, image=boom, tags='BOOM', anchor=NW)
+    canvas.create_image(390, 370, image=boom, tags='BOOM', anchor=NW)
+    canvas.create_image(600, 170, image=boom, tags='BOOM', anchor=NW)
 
     # =============== MONSTER ===================
-    canvas.create_image(950, 260, image=monster, tags='MONSTER', anchor=NW)
-    canvas.create_image(200, 360, image=monster, tags='MONSTER', anchor=NW)
+    canvas.create_image(800, 260, image=monster, tags='MONSTER', anchor=NW)
+    canvas.create_image(1250, 520, image=monster, tags='MONSTER', anchor=NW)
 
 
     # =============== COIN ===================
     
-    canvas.create_image(460, 100, image=coin, tags='COIN', anchor=NW)
-    canvas.create_image(500, 300, image=coin, tags='COIN', anchor=NW)
-    canvas.create_image(1100, 200, image=coin, tags='COIN', anchor=NW)
-    canvas.create_image(1200, 600, image=coin, tags='COIN', anchor=NW)
+    canvas.create_image(600, 50, image=coin, tags='COIN', anchor=NW)
+    canvas.create_image(640, 50, image=coin, tags='COIN', anchor=NW)
+    canvas.create_image(500, 250, image=coin, tags='COIN', anchor=NW)
+    canvas.create_image(1000, 100, image=coin, tags='COIN', anchor=NW)
+    canvas.create_image(960, 100, image=coin, tags='COIN', anchor=NW)
+    canvas.create_image(1100, 490, image=coin, tags='COIN', anchor=NW)
+
 
     #   =============== PLAYER ===================
     
