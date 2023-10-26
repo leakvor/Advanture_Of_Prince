@@ -172,12 +172,12 @@ def level02(event):
     global player_id, score_id, play_again,background1,background2
     canvas.delete("all")
     canvas.create_image(1, 0, image= level2, anchor="nw")
-    canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
     play_again=1
-    canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
     background1 = canvas.create_image(1, 0, image= level2, anchor="nw")
     background2 = canvas.create_image(SCREEN_WIDTH, 0, image= level2 , anchor="nw")
     scroll_background()
+    canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
+
     # ============= long_wall =================
     canvas.create_image(0,600, image=long_wall, tags='PLATFORM', anchor=NW)
     canvas.create_image(60,600, image=long_wall, tags='PLATFORM', anchor=NW)
@@ -251,10 +251,10 @@ def level03(event):
     global player_id,score_id,play_again,background2,background1
     canvas.delete("all")
     play_again=2
-    canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
     background1 = canvas.create_image(1, 0, image= level3, anchor="nw")
     background2 = canvas.create_image(SCREEN_WIDTH, 0, image= level3 , anchor="nw")
     scroll_background()
+    canvas.create_image(20,20, image =button_exist, anchor = "nw",tags="backhome")
 # ========================== WHITE STONE IMAGE ================
 
     canvas.create_image(40, 630, image = long_wall, tags = "PLATFORM", anchor=NW)
